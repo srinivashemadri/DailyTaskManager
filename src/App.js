@@ -1,12 +1,15 @@
-import Home from "./Components/Home/Home";
 import NavBar from "./Components/NavBar";
+import { GlobalContext } from "./Context/GlobalContext";
+import Router from "./Router/Router";
+
+
 
 function App() {
   return (
-    <div>
-      <NavBar/>
-      <Home/>
-    </div>
+    <GlobalContext.Provider>
+        <NavBar/>
+        <Router/>
+    </GlobalContext.Provider>
   );
 }
 

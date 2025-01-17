@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Card({header, title, message}) {
+function Card({header, title, message, action}) {
   return (
     <div class="card ms-5 me-5 mt-3">
         {
@@ -13,7 +13,7 @@ function Card({header, title, message}) {
         
         <div class="card-body">
             <h5 class="card-title">{title}</h5>
-            <p class="card-text">{message}</p>
+            <button className='btn btn-info text-light' onClick={action}>{message}</button>
         </div>
     </div>
   )
