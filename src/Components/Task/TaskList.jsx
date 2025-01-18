@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../Context/GlobalContext'
-import TaskItem from './TaskItem';
 import { useNavigate } from 'react-router-dom';
+import CompletedTaskList from './CompletedTaskList';
+import PendingTaskList from './PendingTaskList';
 
 function TaskList() {
 
@@ -83,65 +84,18 @@ function TaskList() {
                     </div>
                 ) : (
                     <>
-                        {
-                            tasksPending.length === 0 ? (
-                                <h2 className='ms-2 mt-4'>No pending tasks</h2>
-                            ): (
-                                <>
-                                    <h3 className='ms-2 mt-4'>Pending Tasks</h3>
-                                    {
-                                        tasksPending.map((task, index) => {
-                                            return(
-                                                <div key = {index}>
-                                                    <TaskItem 
-                                                        taskHeader={task.taskHeader}
-                                                        taskDescription={task.taskDescription}
-                                                        taskDueDate={task.taskDueDate}
-                                                        taskPriority={task.taskPriority}
-                                                        taskId = {task.taskId}
-                                                        id={index}
-                                                        deleteTaskAction={handleDeleteItem}
-                                                        updateTaskAction={handleUpdateTaskItem}
-                                                        markTaskAsDoneAction={handleMarkAsDone}
-                                                        isPending={true}
-                                                    />
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </>
-                            )
-                        }
+                        <PendingTaskList 
+                            tasksPending={tasksPending} 
+                            handleDeleteItem={handleDeleteItem }
+                            handleMarkAsDone={handleMarkAsDone}
+                            handleUpdateTaskItem={handleUpdateTaskItem}
+                        />
         
-                        {
-                            tasksCompleted.length === 0 ? (
-                                <h3 className='ms-2 mt-4'>No Completed Tasks</h3>
-                            ) : (
-                                <>
-                                    <h3 className='ms-2 mt-4'>Completed Tasks</h3>
-                                    {
-                                        tasksCompleted.map((task, index) => {
-                                            return(
-                                                <div key = {index}>
-                                                    <TaskItem 
-                                                        taskHeader={task.taskHeader}
-                                                        taskDescription={task.taskDescription}
-                                                        taskDueDate={task.taskDueDate}
-                                                        taskPriority={task.taskPriority}
-                                                        taskId = {task.taskId}
-                                                        id={index}
-                                                        deleteTaskAction={handleDeleteItem}
-                                                        updateTaskAction={handleUpdateTaskItem}
-                                                        markTaskAsPendingAction={handleMarkAsPending}
-                                                        isPending={false}
-                                                    />
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </>
-                            )
-                        }
+                        <CompletedTaskList 
+                            tasksCompleted={tasksCompleted} 
+                            handleDeleteItem={handleDeleteItem} 
+                            handleMarkAsPending={handleMarkAsPending}
+                        />
                     </>
                 )
             }

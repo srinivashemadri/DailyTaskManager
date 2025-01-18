@@ -1,5 +1,4 @@
 import React from 'react'
-import Card from '../Common/Card'
 import { useNavigate } from 'react-router-dom'
 
 function Home() {
@@ -17,9 +16,30 @@ function Home() {
 
 
   return (
-    <div>
-        <Card title={'Create Task'} message={'Add a task to your task list'} action={handleCreateTask}/>
-        <Card title={'Display Tasks'} message={'Display all your tasks'} action={handleDisplayAllTasks}/>
+    
+    <div className='container'>
+      <div className='card mt-5'>
+        <div className='card-header text-center bg-info text-white'>
+          <h4>Welcome to Task Manager</h4>
+        </div>
+        <div className='card-body text-center d-grid gap-2 '>
+          <button 
+            className='btn btn-lg btn-light text-dark'
+            onClick={handleCreateTask}
+          >
+            <i className="bi bi-plus-square me-3"></i>
+            Create a task quickly
+          </button>
+
+          <button 
+            className='btn btn-lg btn-light text-dark'
+            onClick={handleDisplayAllTasks}
+          >
+            <i className="bi bi-eye me-3"></i>
+              See all my tasks
+          </button>
+        </div>
+      </div>
     </div>
     
   )

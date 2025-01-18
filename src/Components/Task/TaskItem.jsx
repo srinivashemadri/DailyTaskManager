@@ -27,8 +27,6 @@ function TaskItem({
         markTaskAsPendingAction(taskId);
     }
 
-    console.log('task - '+ id + ' re rendered');
-
     return (
         <div className='card mt-3 ms-2 me-2 '>
             <div className='card-header bg-info text-light'>
@@ -109,13 +107,6 @@ function TaskItem({
 
                 </div>
             </div>
-
-            <div className='card-actions text-center'>
-                
-
-
-            </div>
-        
         </div>
     )
 }
