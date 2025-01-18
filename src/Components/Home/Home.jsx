@@ -10,12 +10,16 @@ function Home() {
     navigate('/createTask')
   }
 
+  const handleDisplayAllTasks = () => {
+    navigate('/tasks');
+  }
+
 
 
   return (
     <div>
         <Card title={'Create Task'} message={'Add a task to your task list'} action={handleCreateTask}/>
-        <Card title={'Display Tasks'} message={'Display all your tasks'}/>
+        <Card title={'Display Tasks'} message={'Display all your tasks'} action={handleDisplayAllTasks}/>
     </div>
     
   )

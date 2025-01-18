@@ -2,17 +2,17 @@ import React from 'react'
 
 function Card({header, title, message, action}) {
   return (
-    <div class="card ms-5 me-5 mt-3">
+    <div className="card ms-5 me-5 mt-3">
         {
             header ? (
-                <div class="card-header">
+                <div className="card-header">
                     {header}
                 </div>
             ): null
         }
         
-        <div class="card-body">
-            <h5 class="card-title">{title}</h5>
+        <div className="card-body">
+            <h5 className="card-title">{title}</h5>
             <button className='btn btn-info text-light' onClick={action}>{message}</button>
         </div>
     </div>
