@@ -90,6 +90,8 @@ function TaskList() {
                             handleMarkAsDone={handleMarkAsDone}
                             handleUpdateTaskItem={handleUpdateTaskItem}
                         />
+
+                        <hr/>
         
                         <CompletedTaskList 
                             tasksCompleted={tasksCompleted} 

@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { formatDate } from '../Common/Utils';
 
 function TaskItem({
         taskHeader, taskDescription, taskDueDate, 
@@ -45,7 +46,7 @@ function TaskItem({
                         <p id={'taskDescription-'+id}>
                             <strong>
                                 <i className="bi bi-calendar-event ms-2 me-2"></i>
-                            </strong>: {taskDueDate}
+                            </strong>:  { formatDate(taskDueDate)}
                         </p>
 
                         <p id={'taskPriority-'+id}>
@@ -63,7 +64,7 @@ function TaskItem({
                                         onClick={handleTaskDoneAction}
                                         style={{fontSize: '1.5em'}}
                                     >
-                                        <i class="bi bi-check2-square"></i>
+                                        <i className="bi bi-check2-square"></i>
                                     </button>
 
                                     <button 
@@ -89,7 +90,7 @@ function TaskItem({
                                         onClick={handleTaskPendingAction}
                                         style={{fontSize: '1.5em'}}
                                     >
-                                        <i class="bi bi-x-lg"></i>
+                                        <i className="bi bi-x-lg"></i>
                                     </button>
 
                                     <button 
