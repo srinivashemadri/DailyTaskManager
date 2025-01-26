@@ -1,24 +1,42 @@
 export const reducer = (state, action) => {
     switch(action.type){
 
+        case 'setPendingTasks':{
+            return{
+                ...state,
+                'tasksPending': action.payLoad
+            }
+        }
+
+        case 'setCompletedTasks': {
+            return {
+                ...state,
+                'tasksCompleted': action.payLoad
+            }
+        }
+
         case 'createTaskItem': {
             let updatedTasks = [...state.tasksPending]
             updatedTasks.push(action.payLoad);
+            
+            updateAndSetItemToLocalStorage('pendingTasks', updatedTasks);
             return {
                 ...state,
                 'tasksPending': updatedTasks
             }
         }
-        
+
         case 'updateTaskItem': {
             let updatedTasks = [...state.tasksPending]
     
             updatedTasks = updatedTasks.filter((task) => task.taskId !== action.id);
     
             updatedTasks.push(action.payLoad);
+
+            updateAndSetItemToLocalStorage('pendingTasks', updatedTasks);
             return {
-            ...state,
-            'tasksPending': updatedTasks
+                ...state,
+                'tasksPending': updatedTasks
             }
         }
     
@@ -26,9 +44,12 @@ export const reducer = (state, action) => {
             let updatedTasks = [...state.tasksPending]
     
             updatedTasks = updatedTasks.filter((task) => task.taskId !== action.id);
+
+            updateAndSetItemToLocalStorage('pendingTasks', updatedTasks);
+
             return {
-            ...state,
-            'tasksPending': updatedTasks
+                ...state,
+                'tasksPending': updatedTasks
             }
         }
     
@@ -36,9 +57,12 @@ export const reducer = (state, action) => {
             let updatedTasks = [...state.tasksCompleted]
     
             updatedTasks = updatedTasks.filter((task) => task.taskId !== action.id);
+
+            updateAndSetItemToLocalStorage('completedTasks', updatedTasks);
+
             return {
-            ...state,
-            'tasksCompleted': updatedTasks
+                ...state,
+                'tasksCompleted': updatedTasks
             }
         }
     
@@ -50,13 +74,18 @@ export const reducer = (state, action) => {
             let taskNeedToBeMarkedAsDone = pendingTasks.filter((task) => task.taskId === action.taskId)
     
             if(taskNeedToBeMarkedAsDone.length !== 0){
-            completedTasks.push(taskNeedToBeMarkedAsDone[0]);
+                completedTasks.push(taskNeedToBeMarkedAsDone[0]);
             }
+
+            updateAndSetItemToLocalStorage('pendingTasks', updatedPendingTasks);
+
+            updateAndSetItemToLocalStorage('completedTasks', completedTasks);
+
     
             return{
-            ...state,
-            'tasksPending': updatedPendingTasks,
-            'tasksCompleted': completedTasks
+                ...state,
+                'tasksPending': updatedPendingTasks,
+                'tasksCompleted': completedTasks
             }
     
         }
@@ -70,13 +99,17 @@ export const reducer = (state, action) => {
     
     
             if(taskNeedToBeMarkedAsPending.length !== 0){
-            pendingTasks.push(taskNeedToBeMarkedAsPending[0]);
+                pendingTasks.push(taskNeedToBeMarkedAsPending[0]);
             }
+
+            updateAndSetItemToLocalStorage('pendingTasks', pendingTasks);
+
+            updateAndSetItemToLocalStorage('completedTasks', updatedCompletedTasks);
     
             return{
-            ...state,
-            'tasksPending': pendingTasks,
-            'tasksCompleted': updatedCompletedTasks
+                ...state,
+                'tasksPending': pendingTasks,
+                'tasksCompleted': updatedCompletedTasks
             }
     
         }
@@ -84,6 +117,13 @@ export const reducer = (state, action) => {
         default: {
             return state
         }
+    }
+}
+
+const updateAndSetItemToLocalStorage = (key, payLoad) => {
+    if(key !== null){
+        localStorage.removeItem(key);
+        localStorage.setItem(key, JSON.stringify(payLoad));
     }
 }
   
