@@ -70,7 +70,7 @@ function CompletedTaskList({tasksCompleted, handleDeleteItem, handleMarkAsPendin
 
     return (
             tasksCompleted.length === 0 ? (
-                <h3 className='ms-2 mt-5'>No Completed Tasks</h3>
+                <h3 className='ms-2 mt-4'>No Completed Tasks</h3>
             ) : (
                 <>
                     <div className='ms-2 mt-4'>
@@ -135,7 +135,7 @@ function CompletedTaskList({tasksCompleted, handleDeleteItem, handleMarkAsPendin
                     </div>
                     {
                         tasks.length === 0 ? (
-                            <h3 className='ms-2 mt-5 text-center'>No Tasks</h3>
+                            <h3 className='ms-2 mt-4 text-center'>No Tasks</h3>
                         ) 
                         
                         : 

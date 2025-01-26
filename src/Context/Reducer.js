@@ -1,5 +1,6 @@
 export const reducer = (state, action) => {
     switch(action.type){
+
         case 'createTaskItem': {
             let updatedTasks = [...state.tasksPending]
             updatedTasks.push(action.payLoad);
@@ -8,6 +9,7 @@ export const reducer = (state, action) => {
                 'tasksPending': updatedTasks
             }
         }
+        
         case 'updateTaskItem': {
             let updatedTasks = [...state.tasksPending]
     

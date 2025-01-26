@@ -16,7 +16,9 @@ function NavBar() {
               <Link to={{
                 pathname: '/home'
               }
-              } className="navbar-brand mb-0 h1">Task Manager</Link>
+              } className="navbar-brand mb-0 h1">
+                <i className="bi bi-list-check me-2"></i>
+                Task Manager</Link>
           </div>
       </nav>
     

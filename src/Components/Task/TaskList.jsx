@@ -64,47 +64,23 @@ function TaskList() {
 
     return (
         <div className='container'>
-            {
-                tasksPending.length === 0 && tasksCompleted.length === 0 ? (
-                    <div className="card ms-3 me-3 mt-5">
-                        <div className='card-header text-center'>
-                            <h4>There are no tasks to display</h4>
-                        </div>
-                        <div className="card-body text-center">
-                            <button 
-                                className='btn btn-lg btn-info text-light' 
-                                onClick={()=>{
-                                    navigate('/createTask')
-                                }}
-                            >
-                                <i className="bi bi-plus-square me-2" style={{fontSize: '1em'}}></i>
-                                Create your first task
-                            </button>
-                        </div>
-                    </div>
-                ) : (
-                    <>
-                        <PendingTaskList 
-                            tasksPending={tasksPending} 
-                            handleDeleteItem={handleDeleteItem }
-                            handleMarkAsDone={handleMarkAsDone}
-                            handleUpdateTaskItem={handleUpdateTaskItem}
-                        />
+                 
+            <PendingTaskList 
+                tasksPending={tasksPending} 
+                handleDeleteItem={handleDeleteItem }
+                handleMarkAsDone={handleMarkAsDone}
+                handleUpdateTaskItem={handleUpdateTaskItem}
+            />
 
-                        <hr/>
-        
-                        <CompletedTaskList 
-                            tasksCompleted={tasksCompleted} 
-                            handleDeleteItem={handleDeleteItem} 
-                            handleMarkAsPending={handleMarkAsPending}
-                        />
-                    </>
-                )
-            }
+            <hr/>
+
+            <CompletedTaskList 
+                tasksCompleted={tasksCompleted} 
+                handleDeleteItem={handleDeleteItem} 
+                handleMarkAsPending={handleMarkAsPending}
+            />
+                    
         </div>
-
-        
-        
     )
 }
 

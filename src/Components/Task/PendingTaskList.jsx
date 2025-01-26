@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TaskItem from './TaskItem'
 import { sortTasksByDate } from '../Common/Utils';
+import { useNavigate } from 'react-router-dom';
 
 function PendingTaskList({tasksPending, handleDeleteItem, handleMarkAsDone, handleUpdateTaskItem}) {
 
@@ -10,6 +11,7 @@ function PendingTaskList({tasksPending, handleDeleteItem, handleMarkAsDone, hand
         'priority': 'All'
     }
     const [filter, setFilter] = useState(initFilter);
+    const navigate = useNavigate();
 
     
     useEffect(()=>{
@@ -67,14 +69,28 @@ function PendingTaskList({tasksPending, handleDeleteItem, handleMarkAsDone, hand
         handleSortBy(updatedFilter.sortBy, updatedTasks);
     }
 
+    const handleCreateTask = () => {
+        navigate('/createTask')
+    }
+
 
     return (
             tasksPending.length === 0 ? (
-                <h3 className='ms-2 mt-5'>No Pending Tasks</h3>
+                <div className='ms-2 mt-5 d-flex align-items-center'>
+                    <h3>No Pending Tasks</h3>
+                    <button className='btn btn-info btn-sm text-white ms-auto' onClick={handleCreateTask}>
+                        <i className="bi bi-plus-lg"></i>
+                    </button>
+                </div>
             ) : (
                 <>
                     <div className='ms-2 mt-4'>
-                        <h3>Pending Tasks</h3>
+                        <div className='ms-2 mt-5 d-flex align-items-center'>
+                            <h3>Pending Tasks</h3>
+                            <button className='btn btn-info btn-sm text-white ms-auto' onClick={handleCreateTask}>
+                                <i className="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
 
                         <div className='row mt-3'>
                             <div className='col-3'>
@@ -152,6 +168,7 @@ function PendingTaskList({tasksPending, handleDeleteItem, handleMarkAsDone, hand
                                         id={index}
                                         deleteTaskAction={handleDeleteItem}
                                         markTaskAsDoneAction={handleMarkAsDone}
+                                        updateTaskAction={handleUpdateTaskItem}
                                         isPending={true}
                                     />
                                 </div>

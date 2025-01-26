@@ -29,7 +29,7 @@ function TaskItem({
     }
 
     return (
-        <div className='card mt-3 ms-2 me-2 '>
+        <div className='card mt-3 ms-2'>
             <div className='card-header bg-info text-light'>
                 <h4 id={'taskHeader-'+id}>{taskHeader}</h4>
             </div>
