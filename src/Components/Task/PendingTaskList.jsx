@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import TaskItem from './TaskItem'
 import { sortTasksByDate } from '../Common/Utils';
 import { useNavigate } from 'react-router-dom';
+import Filter from './Filter';
 
 function PendingTaskList({tasksPending, handleDeleteItem, handleMarkAsDone, handleUpdateTaskItem}) {
 
@@ -84,71 +85,17 @@ function PendingTaskList({tasksPending, handleDeleteItem, handleMarkAsDone, hand
                 </div>
             ) : (
                 <>
-                    <div className='ms-2 mt-4'>
-                        <div className='ms-2 mt-5 d-flex align-items-center'>
-                            <h3>Pending Tasks</h3>
-                            <button className='btn btn-info btn-sm text-white ms-auto' onClick={handleCreateTask}>
-                                <i className="bi bi-plus-lg"></i>
-                            </button>
-                        </div>
-
-                        <div className='row mt-3'>
-                            <div className='col-3'>
-                                <select 
-                                    className="form-select" 
-                                    aria-label="Default select example"
-                                    value={filter.sortBy}
-                                    onChange={(e)=>{
-                                        setFilter({
-                                            ...filter,
-                                            'sortBy': e.target.value
-                                        })
-                                        handleSortBy(e.target.value, [...tasks]);
-                                    }}
-                                >
-                                    <option value="sort-by" disabled>Sort By</option>
-                                    <option value="date-low-high">Date Ascending</option>
-                                    <option value="date-high-low">Date Descending</option>
-                                </select>
-                            </div>
-                            <div className='col-9 '>
-                                <button onClick={()=>{
-                                    handlePriorityFilter('All');
-                                }} className={ (filter.priority === 'All' ? 'btn btn-info': 'btn btn-light') + ' ms-1'}>All</button>
-
-                                <button onClick={()=>{
-                                    handlePriorityFilter('High');
-                                }} className={ (filter.priority === 'High' ? 'btn btn-info': 'btn btn-light') + ' ms-1'}>
-                                    <i className="bi bi-flag-fill ms-2 me-2 text-danger"></i>
-                                    High
-                                </button>
-
-                                <button onClick={()=>{
-                                    handlePriorityFilter('Medium');
-                                }} className={ (filter.priority === 'Medium' ? 'btn btn-info': 'btn btn-light') + ' ms-1'}>
-                                    <i className="bi bi-flag-fill ms-2 me-2 text-warning"></i>
-                                    Medium
-                                </button>
-
-                                <button onClick={()=>{
-                                    handlePriorityFilter('Low');
-                                }} className={ (filter.priority === 'Low' ? 'btn btn-info': 'btn btn-light') + ' ms-1'}>
-                                    <i className="bi bi-flag-fill ms-2 me-2 text-dark"></i>
-                                    Low
-                                </button>
-
-                                <button
-                                    className='btn btn-light ms-1'
-                                    onClick={handleReset}
-                                >
-                                    <i className="bi bi-arrow-counterclockwise ms-2 me-2"></i>
-                                    Reset
-                                </button>
-                                
-                            </div>
-                        </div>
-
-                    </div>
+                    <Filter 
+                        handlePriorityFilter={handlePriorityFilter}
+                        filter={filter}
+                        setFilter={setFilter}
+                        handleReset={handleReset}
+                        handleSortBy={handleSortBy}
+                        tasks={tasks}
+                        headerText={'Pending Tasks'}
+                        handleCreateTask={handleCreateTask}
+                        createEnabled={true}
+                    />
                     {
                         tasks.length === 0 ? (
                             <h3 className='ms-2 mt-5 text-center'>No Tasks</h3>
