@@ -55,7 +55,7 @@ function TaskItem({
                             : {taskPriority}
                         </p>
                     </div>
-                    <div className='col-xs-12 col-md-4 d-flex justify-content-center align-items-center'>
+                    <div className='col-xs-12 col-md-4 d-flex justify-content-end align-items-center'>
                         {
                             isPending? (
                                 <>
